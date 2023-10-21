@@ -27,6 +27,6 @@ class CreateLogQueueStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_statuses');
+        Schema::dropIfExists('log_queue_statuses');
     }
 }

@@ -15,15 +15,23 @@ class LogQueuePrioritiesSeeder extends Seeder
         DB::table('log_queue_priorities')->insert([
             [
                 'priority_name' => "low",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
             [
                 'priority_name' => "medium",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
             [
                 'priority_name' => "high",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
             [
                 'priority_name' => "emergency",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
         ]);
     }

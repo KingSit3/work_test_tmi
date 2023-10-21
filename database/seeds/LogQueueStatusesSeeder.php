@@ -15,15 +15,23 @@ class LogQueueStatusesSeeder extends Seeder
         DB::table('log_queue_statuses')->insert([
             [
                 'status_name' => "waiting",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
             [
                 'status_name' => "processing",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
             [
                 'status_name' => "success",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
             [
                 'status_name' => "failed",
+                "created_at" => now(),
+                "updated_at" => now()
             ],
         ]);
     }

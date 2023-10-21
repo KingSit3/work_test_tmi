@@ -35,6 +35,6 @@ class CreateLogQueueHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_headers');
+        Schema::dropIfExists('log_queue_headers');
     }
 }

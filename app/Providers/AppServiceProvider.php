@@ -40,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
 
         Queue::before(function (JobProcessing $event) {
             Log::info("Queue Started: ". $event->job->getJobId(), $event->job->payload());
+            
             // $event->connectionName
             // $event->job
             // $event->job->payload()
@@ -54,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::failing(function (JobFailed $event) {
+
             $queuePayload = json_decode($event->job->getRawBody());
             $logData = unserialize($queuePayload->data->command);
             dump($logData);

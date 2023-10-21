@@ -27,6 +27,6 @@ class CreateLogQueuePrioritiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_priorities');
+        Schema::dropIfExists('log_queue_priorities');
     }
 }

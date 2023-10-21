@@ -20,6 +20,9 @@ class CreateLogQueueDetailsTable extends Migration
             $table->unsignedBigInteger('log_header_id');
             $table->foreign('log_header_id')->references('id')->on('log_queue_headers');
 
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('log_queue_statuses');
+
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class CreateLogQueueDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_details');
+        Schema::dropIfExists('log_queue_details');
     }
 }
