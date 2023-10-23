@@ -14,7 +14,7 @@ class CreateLogQueueHeadersTable extends Migration
     public function up()
     {
         Schema::create('log_queue_headers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id')->unique();
             $table->string("display_name");
             $table->string("description");
             $table->string("payload_url");

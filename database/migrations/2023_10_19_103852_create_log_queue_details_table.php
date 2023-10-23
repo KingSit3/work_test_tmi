@@ -17,7 +17,7 @@ class CreateLogQueueDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->text("note");
             
-            $table->unsignedBigInteger('log_header_id');
+            $table->string('log_header_id');
             $table->foreign('log_header_id')->references('id')->on('log_queue_headers');
 
             $table->unsignedBigInteger('status_id');

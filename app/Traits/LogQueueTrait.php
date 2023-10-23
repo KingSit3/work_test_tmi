@@ -26,7 +26,7 @@ trait LogQueueTrait
     $payloadUrl = Storage::cloud()->url($filename);
     // End Save to S3
 
-    $logQueueHeader = LogQueueHeader::create([
+    LogQueueHeader::create([
       "id" => $jobId,
       "display_name" => $displayName,
       "description" => $description,
@@ -38,7 +38,7 @@ trait LogQueueTrait
 
     LogQueueDetail::create([
       "note" => "New Queue appeared!",
-      "log_header_id" => $logQueueHeader->id,
+      "log_header_id" => $jobId,
       "status_id" => $status->id
     ]);
   }
