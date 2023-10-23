@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogQueueDetail extends Model
 {
-    protected $table = "log_queue_detail";
+    protected $table = "log_queue_details";
+    protected $guarded = [];
 }
