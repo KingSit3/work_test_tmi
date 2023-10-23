@@ -21,7 +21,9 @@ trait LogQueueTrait
     // End Get Status ID
 
     // Save to S3
-    Storage::put("queue_log/log-queue-".$jobId.".json", json_encode($payload));
+    $filename = "queue_log/log-queue-".$jobId.".json";
+    Storage::cloud()->put($filename, json_encode($payload));
+    $payloadUrl = Storage::cloud()->url($filename);
     // End Save to S3
 
     $logQueueHeader = LogQueueHeader::create([
@@ -31,7 +33,7 @@ trait LogQueueTrait
       "priority_id" => $priority->id,
       "status_id" => $status->id,
 
-      "payload_url" => $jobId
+      "payload_url" => $payloadUrl
     ]);
 
     LogQueueDetail::create([
