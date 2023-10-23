@@ -3,10 +3,16 @@
 namespace App\Console\Commands;
 
 use App\Jobs\SpamDummyEmail;
+use App\Traits\LogQueueTrait;
+use App\User;
+use Illuminate\Bus\Dispatcher;
 use Illuminate\Console\Command;
+use Illuminate\Queue\InteractsWithQueue;
 
 class SpamGoesBrrrr extends Command
 {
+    use LogQueueTrait, InteractsWithQueue;
+
     /**
      * The name and signature of the console command.
      *
@@ -38,6 +44,10 @@ class SpamGoesBrrrr extends Command
      */
     public function handle()
     {
-        SpamDummyEmail::dispatchNow();
+        $user = User::first();
+        $jobId = app(Dispatcher::class)->dispatch(new SpamDummyEmail($user));
+
+        // Init Log Queue
+        $this->InitQueueLog("SpamDummyEmail", $jobId, "Spamming Dummy email", "low", ["user" => $user]);
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Jobs\SpamDummyEmail;
 use App\Mail\TestEmailDesu;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class SendDummyEmailController extends Controller
@@ -19,7 +18,9 @@ class SendDummyEmailController extends Controller
         $user = User::first();
 
         for ($i=0; $i < 10; $i++) { 
-            SpamDummyEmail::dispatch($user);
+            $jobId = app(Dispatcher::class)->dispatch(new SpamDummyEmail($user));
+
+            $this->InitQueueLog("SpamDummyEmail", $jobId, "Spamming Dummy email", "low", ["user" => $user]);
         }
     }
 }

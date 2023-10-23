@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
-use App\Mail\TestErrorQueueLogEmail;
+use App\Traits\LogQueueTrait;
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\JobProcessing;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use LogQueueTrait;
+
     /**
      * Register any application services.
      *
@@ -36,34 +36,16 @@ class AppServiceProvider extends ServiceProvider
             error_reporting(0);
         }
         
-        //
-
         Queue::before(function (JobProcessing $event) {
-            Log::info("Queue Started: ". $event->job->getJobId(), $event->job->payload());
-            
-            // $event->connectionName
-            // $event->job
-            // $event->job->payload()
+            $this->UpdateQueueLogStatus("processing", $event->job->getJobId(), "Queue Started");
         });
  
         Queue::after(function (JobProcessed $event) {
-            Log::info("Queue Finished: ". $event->job->getJobId(), $event->job->payload());
-            // Mail::to("queue-user@gmail.com")->send(new TestErrorQueueLogEmail($event->job, $event->payload()));
-            // $event->connectionName
-            // $event->job
-            // $event->job->payload()
+            $this->UpdateQueueLogStatus("success", $event->job->getJobId(), "Queue Finished");
         });
 
         Queue::failing(function (JobFailed $event) {
-
-            $queuePayload = json_decode($event->job->getRawBody());
-            $logData = unserialize($queuePayload->data->command);
-            dump($logData);
-            Log::alert("Queue Failed: ". $event->job->getJobId(), ["payload" => $logData, "exception" => $event->exception]);
-            // $event->connectionName
-            // $event->job
-            // $event->job->payload()
-            // $event->exception
+            $this->UpdateQueueLogStatus("failed", $event->job->getJobId(), $event->exception->getMessage());
         });
     }
 }

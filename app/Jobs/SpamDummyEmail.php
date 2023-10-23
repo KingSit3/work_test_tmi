@@ -3,8 +3,6 @@
 namespace App\Jobs;
 
 use App\Mail\TestEmailDesu;
-use App\User;
-use App\Traits\LogQueueTrait;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -14,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SpamDummyEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, LogQueueTrait;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $user;
 
@@ -35,7 +33,6 @@ class SpamDummyEmail implements ShouldQueue
      */
     public function handle()
     {
-        $this->InitQueueLog("SpamDummyEmail", "Spamming Dummy email", "sadasd", ["user_data" => $this->user]);
         Mail::to("spam-ano-user@gmail.com")->send(new TestEmailDesu($this->user));
     }
 }
