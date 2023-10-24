@@ -48,6 +48,6 @@ class SpamGoesBrrrr extends Command
         $jobId = app(Dispatcher::class)->dispatch(new SpamDummyEmail($user));
 
         // Init Log Queue
-        $this->InitQueueLog("SpamDummyEmail", $jobId, "Spamming Dummy email", "low", ["user" => $user]);
+        $this->InitQueueLog("SpamDummyEmail", $jobId, "Spamming Dummy email", "low", ["user" => $user, "jobId" => $jobId]);
     }
 }
