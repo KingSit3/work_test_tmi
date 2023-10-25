@@ -14,7 +14,7 @@ class LogQueueStatusesSeeder extends Seeder
     {
         DB::table('log_queue_statuses')->insert([
             [
-                'status_name' => "waiting",
+                'status_name' => "pending",
                 "created_at" => now(),
                 "updated_at" => now()
             ],

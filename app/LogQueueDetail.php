@@ -8,4 +8,9 @@ class LogQueueDetail extends Model
 {
     protected $table = "log_queue_details";
     protected $guarded = [];
+
+    public function status()
+    {
+        return $this->belongsTo(LogQueueStatus::class, "status_id");
+    }
 }

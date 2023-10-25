@@ -17,7 +17,7 @@ trait LogQueueTrait
     // End Get Priority
 
     // Get Status ID
-    $status = LogQueueStatus::where("status_name", "waiting")->firstOrFail();
+    $status = LogQueueStatus::where("status_name", "pending")->firstOrFail();
     // End Get Status ID
 
     // Save to S3
