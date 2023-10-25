@@ -8,6 +8,7 @@ class LogQueueHeader extends Model
 {
     protected $table = "log_queue_headers";
     protected $guarded = [];
+    public $incrementing = false;
 
 
     public function status()
