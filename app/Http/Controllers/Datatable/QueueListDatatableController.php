@@ -16,12 +16,6 @@ class QueueListDatatableController extends Controller
                         ->addIndexColumn()
                         ->orderColumn('updated_at', '-updated_at $1')
                         ->orderColumn('display_name', '-display_name $1')
-                        ->addColumn("action", function($row){
-                            $data = [
-                                "row_data" => $row
-                            ];
-                            return view("datatable-actions.queue-list", $data);
-                        })
                         ->editColumn('payload_url', function($row){
                             return "<a href=". $row["payload_url"] ." target='_blank'>Lihat payload</a>";
                         })

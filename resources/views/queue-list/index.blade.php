@@ -24,7 +24,6 @@
         <th>Payload</th>
         <th>Status</th>
         <th>Priority</th>
-        <th>Aksi</th>
       </thead>
       <tbody>
       </tbody>
@@ -48,7 +47,6 @@
                   {data: 'payload_url'},
                   {data: 'status.status_name'},
                   {data: 'priority.priority_name'},
-                  {data: 'action'},
               ]
           });
 
