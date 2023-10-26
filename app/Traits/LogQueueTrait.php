@@ -30,8 +30,8 @@ trait LogQueueTrait
       "id" => $jobId,
       "display_name" => $displayName,
       "description" => $description,
-      "priority_id" => $priority->id,
-      "status_id" => $status->id,
+      "log_queue_priority_id" => $priority->id,
+      "log_queue_status_id" => $status->id,
 
       "payload_url" => $payloadUrl
     ]);
@@ -39,7 +39,7 @@ trait LogQueueTrait
     LogQueueDetail::create([
       "note" => "New Queue appeared!",
       "log_header_id" => $jobId,
-      "status_id" => $status->id
+      "log_queue_status_id" => $status->id
     ]);
   }
 
@@ -50,13 +50,13 @@ trait LogQueueTrait
     // End Get Status ID
 
     LogQueueHeader::findOrFail($jobId)->update([
-      "status_id" => $status->id,
+      "log_queue_status_id" => $status->id,
     ]);
 
     LogQueueDetail::create([
       "note" => $note,
       "log_header_id" => $jobId,
-      "status_id" => $status->id
+      "log_queue_status_id" => $status->id
     ]);
   }
 }

@@ -11,6 +11,6 @@ class LogQueueDetail extends Model
 
     public function status()
     {
-        return $this->belongsTo(LogQueueStatus::class, "status_id");
+        return $this->belongsTo(LogQueueStatus::class, "log_queue_status_id");
     }
 }

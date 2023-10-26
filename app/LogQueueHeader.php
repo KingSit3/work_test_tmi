@@ -13,12 +13,12 @@ class LogQueueHeader extends Model
 
     public function status()
     {
-        return $this->belongsTo(LogQueueStatus::class, "status_id");
+        return $this->belongsTo(LogQueueStatus::class, "log_queue_status_id");
     }
 
     public function priority()
     {
-        return $this->belongsTo(LogQueuePriority::class, "priority_id");
+        return $this->belongsTo(LogQueuePriority::class, "log_queue_priority_id");
     }
 
     public function logQueueDetails()

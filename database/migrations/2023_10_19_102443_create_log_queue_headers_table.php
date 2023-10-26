@@ -19,10 +19,10 @@ class CreateLogQueueHeadersTable extends Migration
             $table->string("description");
             $table->string("payload_url");
             
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('log_queue_statuses');
-            $table->unsignedBigInteger('priority_id');
-            $table->foreign('priority_id')->references('id')->on('log_queue_priorities');
+            $table->unsignedBigInteger('log_queue_status_id');
+            $table->foreign('log_queue_status_id')->references('id')->on('log_queue_statuses');
+            $table->unsignedBigInteger('log_queue_priority_id');
+            $table->foreign('log_queue_priority_id')->references('id')->on('log_queue_priorities');
 
             $table->timestamps();
         });

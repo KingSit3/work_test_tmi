@@ -20,8 +20,8 @@ class CreateLogQueueDetailsTable extends Migration
             $table->string('log_header_id');
             $table->foreign('log_header_id')->references('id')->on('log_queue_headers');
 
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('log_queue_statuses');
+            $table->unsignedBigInteger('log_queue_status_id');
+            $table->foreign('log_queue_status_id')->references('id')->on('log_queue_statuses');
 
             $table->timestamps();
         });
